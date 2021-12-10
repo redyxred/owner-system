@@ -1,0 +1,45 @@
+@import "~@assets/scss/variables";
+@import "~@assets/scss/mixins";
+
+.card {
+  width: auto;
+  padding: 20px 30px;
+  background-color: $c-light;
+  @include shadows-1();
+  @include rounded(6px);
+  &__header {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &-title {
+    }
+    &-extraLink {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $c-primary;
+      font-weight: bold;
+      font-size: 13px;
+      cursor: pointer;
+      &-icon {
+        font-size: 1.2rem;
+        margin-right: 5px;
+      }
+      &-text {
+        color: $c-muted;
+        font-size: 13px;
+        font-weight: bold;
+      }
+    }
+  }
+  &__content {
+
+  }
+  &__footer {
+    margin-top: 15px;
+    & *:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}

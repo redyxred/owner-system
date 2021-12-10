@@ -1,0 +1,58 @@
+@import "~@assets/scss/variables";
+@import "~@assets/scss/mixins";
+
+.select {
+  width: 230px;
+  position: relative;
+  &--block {
+    width: auto;
+  }
+  &__input {
+    position: relative;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 18px;
+    border: 1px solid $c-border;
+    cursor: pointer;
+    @include rounded();
+    &--expanded {
+      @include rounded(4px 4px 0 0);
+    }
+    &-name {
+      font-size: 13px;
+      font-weight: bold;
+      color: $c-muted;
+      margin-right: 20px;
+    }
+    &-icon {
+      color: $c-muted;
+      font-size: .8rem;
+    }
+  }
+  &__wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 5px 0;
+    background-color: $c-light;
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    border-color: $c-border;
+    @include rounded(0px 0px 4px 4px);
+    &-item {
+      padding: 8px 18px;
+      font-size: 13px;
+      color: $c-muted;
+      font-weight: 500;
+      cursor: pointer;
+      @include transition-all();
+      &:hover,
+      &--active {
+        background-color: $c-border;
+        color: $c-primary;
+      }
+    }
+  }
+}

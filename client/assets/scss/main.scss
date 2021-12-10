@@ -1,0 +1,39 @@
+@import url("http://fonts.fontstorage.com/import/roboto.css");
+@import url("http://fonts.fontstorage.com/import/raleway.css");
+@import "~@assets/scss/variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, p, span {
+  color: $c-dark;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+small {
+  color: $c-muted;
+}
+
+body {
+  background-color: $c-gray;
+}
+
+.snackbar-wrapper {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+}
+

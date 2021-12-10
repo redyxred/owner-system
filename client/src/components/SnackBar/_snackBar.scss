@@ -1,0 +1,87 @@
+@import "~@assets/scss/variables";
+@import "~@assets/scss/mixins";
+
+.snackbar {
+  $snackbar: &;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+  background-color: $c-light;
+  border-width: 0 0 0 4px;
+  border-style: solid;
+  @include rounded(6px);
+  @include shadows-1();
+  @include slideIn();
+  &--closed {
+    @include slideOut();
+  }
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+  &--success {
+    border-color: $c-success;
+    #{$snackbar}__info {
+      &-icon {
+        color: $c-success;
+      }
+    }
+  }
+
+  &--error {
+    border-color: $c-error;
+    #{$snackbar}__info {
+      &-icon {
+        color: $c-error;
+      }
+    }
+  }
+
+  &--info {
+    border-color: $c-primary;
+    #{$snackbar}__info {
+      &-icon {
+        color: $c-primary;
+      }
+    }
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    &-icon {
+      margin-right: 20px;
+      font-size: 1.8rem;
+    }
+    &-title {
+      margin-bottom: 5px;
+    }
+    &-message {
+      font-size: 14px;
+      color: $c-muted;
+    }
+  }
+
+  &__extras {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-left: 1px solid $c-border;
+    &-btn {
+      width: 100%;
+      padding: 10px 20px;
+      color: $c-muted;
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+      &:not(:last-child) {
+        border-bottom: 1px solid $c-border;
+      }
+      &:active {
+        background-color: $c-border;
+      }
+    }
+  }
+}

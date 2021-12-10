@@ -1,0 +1,32 @@
+@import "~@assets/scss/variables";
+@import "~@assets/scss/mixins";
+
+.menuItem {
+  $menuItem: &;
+  &--active {
+    background-color: $c-primary;
+    box-shadow: inset 0px -5px 0px darken($c-primary, 10);
+    #{$menuItem}__link {
+      &-icon {
+        color: $c-white;
+      }
+      &-name {
+        color: $c-white;
+      }
+    }
+  }
+  &__link {
+    display: flex;
+    align-items: center;
+    padding: 17px 20px;
+    &-icon {
+      margin-right: 10px;
+      color: #838F9A;
+      font-size: 1.1rem;
+    }
+    &-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+}

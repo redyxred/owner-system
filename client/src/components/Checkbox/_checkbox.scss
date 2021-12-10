@@ -1,0 +1,39 @@
+@import "~@assets/scss/variables";
+@import "~@assets/scss/mixins";
+
+.checkbox {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &__item {
+    $item: &;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background-color: $c-light;
+    border: 1px solid $c-border;
+    @include rounded();
+    @include transition-all();
+    &--checked {
+      background-color: $c-primary;
+      border-color: $c-primary;
+      #{$item}-icon {
+        color: $c-light;
+      }
+    }
+    &-icon {
+      font-size: .8rem;
+    }
+  }
+  &__title {
+    margin-left: 10px;
+    font-size: 13px;
+    color: $c-muted;
+  }
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}

@@ -1,0 +1,23 @@
+@import "~@assets/scss/variables";
+@import "~@assets/scss/mixins";
+
+.list {
+  width: auto;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  &__item {
+    padding: 14px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $c-border;
+    &-info {
+      display: flex;
+      align-items: center;
+      &-head {
+        margin-left: 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@import "~@assets/scss/variables";
+@import "~@assets/scss/mixins";
+
+.tag {
+  font-size: 12px;
+  padding: 2px 5px;
+  @include rounded();
+  background-color: $c-gray;
+  color: $c-dark;
+}

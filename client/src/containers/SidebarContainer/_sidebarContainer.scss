@@ -1,0 +1,33 @@
+@import "~@assets/scss/variables";
+@import "~@assets/scss/mixins";
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 240px;
+  background-color: $c-light;
+  &__nav {
+    &-logotype {
+      padding-top: 17px;
+      padding-bottom: 16px;
+    }
+  }
+  &__user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-top: 1px solid $c-border;
+    &-info {
+      cursor: pointer;
+      small {
+        color: $c-muted;
+        font-size: 12px;
+      }
+    }
+  }
+}

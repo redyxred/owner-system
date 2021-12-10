@@ -1,0 +1,32 @@
+@import "~@assets/scss/variables";
+@import "~@assets/scss/mixins";
+
+.detailStaff {
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    &-username {
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+  }
+  &__stats {
+    text-align: center;
+    margin-top: 20px;
+  }
+  &__actions {
+    margin-top: 20px;
+  }
+}
+
+.descriptionStaffCard {
+  height: 100%;
+  &__content {
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

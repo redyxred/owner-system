@@ -1,0 +1,40 @@
+@import "~@assets/scss/variables";
+@import "~@assets/scss/mixins";
+
+.input {
+  &__el {
+    padding: 10px 18px;
+    border: 1px solid $c-border;
+    @include rounded;
+    background-color: $c-gray;
+    @include transition-all;
+    @include shadows-1;
+    color: $c-dark;
+    &--block {
+      width: 100%;
+    }
+    &--error {
+      border-color: $c-error;
+      color: $c-error;
+      &::placeholder {
+        color: $c-error;
+      }
+    }
+    &--noStyles {
+      background-color: transparent;
+      border-color: transparent;
+      box-shadow: none;
+    }
+    &:hover,
+    &:focus {
+      background-color: transparent;
+    }
+  }
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+  &__error {
+    font-size: 13px;
+    color: $c-error;
+  }
+}

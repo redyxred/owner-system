@@ -1,0 +1,15 @@
+@import "~@assets/scss/variables";
+@import "~@assets/scss/mixins";
+
+.descriptions {
+  align-items: baseline;
+  &__item {
+    padding: 30px 0;
+    &:not(:nth-last-child(-n+3)) {
+      border-bottom: 1px solid $c-border;
+    }
+    &-title {
+      margin-bottom: 10px;
+    }
+  }
+}

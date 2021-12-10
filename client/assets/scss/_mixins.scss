@@ -1,0 +1,39 @@
+@import "~@assets/scss/variables";
+
+@mixin text-light {
+  font-weight: 300;
+}
+
+@mixin rounded($size: 4px) {
+  border-radius: $size;
+}
+
+@mixin transition-all {
+  transition: .4s all ease-in-out;
+}
+
+@mixin shadows-1 {
+  box-shadow: 1px 1px 2px 0 $c-shadows;
+}
+
+@mixin slideIn($time: 1s) {
+  transition: 1s transformX ease-in-out;
+  animation-duration: $time;
+  animation-name: slideIn;
+  animation-timing-function: ease-in-out;
+}
+
+@mixin slideOut($time: 1s) {
+  transition: 1s transformX ease-in-out;
+  animation-duration: $time;
+  animation-name: slideOut;
+  animation-timing-function: ease-in-out;
+}
+
+@mixin slideTopToBottom($time: 1s) {
+  transition: 1s transformX ease-in-out;
+  animation-duration: $time;
+  animation-name: slideTopToBottom;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}

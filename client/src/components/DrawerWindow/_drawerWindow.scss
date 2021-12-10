@@ -1,0 +1,12 @@
+@import "~@assets/scss/variables";
+@import "~@assets/scss/mixins";
+
+.drawer {
+  &-content {
+    background-color: $c-light;
+    padding: 20px;
+    &-wrapper {
+      box-shadow: none !important;
+    }
+  }
+}

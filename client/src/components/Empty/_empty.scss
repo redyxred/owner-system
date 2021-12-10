@@ -1,0 +1,27 @@
+@import "~@assets/scss/variables";
+@import "~@assets/scss/mixins";
+
+.empty {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &__icon {
+    color: $c-muted;
+    &--withAnimation {
+      @include slideTopToBottom();
+    }
+  }
+  &__title {
+    margin-top: 10px;
+  }
+  &__description {
+    margin-top: 2px;
+    color: $c-muted;
+    font-size: 15px;
+  }
+  &__backBtn {
+    margin-top: 20px;
+  }
+}
