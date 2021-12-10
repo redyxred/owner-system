@@ -1,5 +1,5 @@
 {
-  "host": "localhost",
+  "host": "5.183.8.247",
   "port": 3030,
   "public": "../public/",
   "paginate": {
@@ -18,7 +18,7 @@
       "header": {
         "typ": "access"
       },
-      "audience": "https://yourdomain.com",
+      "audience": "https://ownersystem.io",
       "issuer": "feathers",
       "algorithm": "HS256",
       "expiresIn": "1d"
