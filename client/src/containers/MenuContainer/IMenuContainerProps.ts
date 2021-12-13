@@ -1,5 +1,6 @@
-import { IRouteSiderRender } from '@app/routes/IRoute'
+import { IRouteSiderRender } from "@app/routes/IRoute";
 
 export interface IMenuContainerProps {
-  items: IRouteSiderRender[]
+  items: IRouteSiderRender[];
+  current?: string;
 }

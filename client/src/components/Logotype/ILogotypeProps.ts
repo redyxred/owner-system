@@ -1,3 +1,4 @@
 export interface ILogotypeProps {
-  className?: string
+  className?: string;
+  collapsed: boolean;
 }

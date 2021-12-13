@@ -1,73 +1,54 @@
-import React from 'react'
-import { observer } from 'mobx-react-lite'
-import { RouteComponentProps, withRouter } from 'react-router-dom'
-import { Form, Formik, FormikHelpers, FormikValues } from 'formik'
-import InputFormik from '@app/components/Input/InputFormik'
-import Button from '@app/components/Button'
-import { HOME } from '@app/consts/routes'
-import Loader from '@app/components/Loader'
-import { LoginFormValid } from '@app/utils/formValidations'
-import { useStore } from '@app/hooks/stores.hooks'
+import React, { useState } from "react";
+import { Form, Button, Input } from "antd";
+import { useHistory } from "react-router-dom";
+import { HOME } from "@app/consts/routes";
+import { useStore } from "@app/hooks/stores.hooks";
 
 type FormValues = {
-  email: string
-  password: string
-}
+  email: string;
+  password: string;
+};
 
-const LoginForm: React.FC<RouteComponentProps> = ({ history }) => {
-  const authStore = useStore('authStore')
+const LoginForm: React.FC = () => {
+  const { authorize } = useStore("authStore");
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
-  const submitHandler = (
-    values: FormikValues,
-    cb: FormikHelpers<FormValues>
-  ) => {
-    authStore.authorize(values).then((result) => {
-      if (!result) {
-        cb.setSubmitting(false)
-        return
-      }
-      history.push({ pathname: HOME })
-    })
-  }
+  const submitHandler = (values: FormValues) => {
+    setLoading(true);
+    authorize(values)
+      .finally(() => setLoading(false))
+      .then((result) => {
+        if (!result) return;
+        history.push({ pathname: HOME });
+      });
+  };
 
   return (
-    <Formik
+    <Form
       initialValues={{
-        email: '',
-        password: '',
+        email: "",
+        password: "",
       }}
-      validationSchema={LoginFormValid}
-      onSubmit={(values, formikHelpers) => {
-        submitHandler(values, formikHelpers)
+      onFinish={(values) => {
+        submitHandler(values);
       }}
     >
-      {({ isSubmitting, errors }) =>
-        isSubmitting ? (
-          <Loader block />
-        ) : (
-          <Form>
-            <InputFormik
-              error={!!errors.email}
-              type="email"
-              name="email"
-              block
-              placeholder="Адрес электронной почты"
-            />
-            <InputFormik
-              error={!!errors.password}
-              type="password"
-              name="password"
-              block
-              placeholder="Пароль"
-            />
-            <Button block htmlType="submit">
-              Войти
-            </Button>
-          </Form>
-        )
-      }
-    </Formik>
-  )
-}
+      <Form.Item name="email">
+        <Input
+          disabled={loading}
+          type="email"
+          placeholder="Адрес электронной почты"
+        />
+      </Form.Item>
+      <Form.Item name="password">
+        <Input.Password disabled={loading} placeholder="Пароль" />
+      </Form.Item>
+      <Button block htmlType="submit" type="primary" loading={loading}>
+        Войти
+      </Button>
+    </Form>
+  );
+};
 
-export default withRouter(observer(LoginForm))
+export default LoginForm;

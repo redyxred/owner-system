@@ -2,33 +2,30 @@
 @import "~@assets/scss/mixins";
 
 .logotype {
-  padding: 0 20px;
+  padding: 8px 20px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   color: $c-primary;
+
   &__icon {
     font-size: 2.8rem;
-    margin-right: 10px;
   }
   &__info {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    span {
-      padding: 0;
+    margin-left: 10px;
+    h3 {
       margin: 0;
       font-size: 25px;
       font-weight: bold;
       font-family: 'Raleway', sans-serif;
-
+      color: $c-primary;
     }
     small {
       color: $c-muted;
       font-size: 12px;
-      padding: 0;
-      margin: 0;
-
     }
   }
 }

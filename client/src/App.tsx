@@ -1,28 +1,26 @@
-import React from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
-import { observer } from 'mobx-react-lite'
-import { RouteService } from '@app/services/RouteService'
-import { HOME, LOGIN } from '@app/consts/routes'
-import Loader from '@app/components/Loader'
-import { useStore } from '@app/hooks/stores.hooks'
+import React from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { observer } from "mobx-react-lite";
+import { HOME, LOGIN } from "@app/consts/routes";
+import { useStore } from "@app/hooks/stores.hooks";
+import useRouter from "@app/hooks/router.hook";
 
 function App() {
-  const authStore = useStore('authStore')
+  const authStore = useStore("authStore");
+  const { all } = useRouter();
 
   if (authStore.loading) {
-    return <Loader block />
+    return <h3>Loading app...</h3>;
   } else {
     return (
       <Switch>
-        {RouteService.all(authStore.isAuthenticated, authStore.permissions).map(
-          ({ component, path, exact }) => (
-            <Route key={path} path={path} component={component} exact={exact} />
-          )
-        )}
+        {all().map(({ component, path, exact }) => (
+          <Route key={path} path={path} component={component} exact={exact} />
+        ))}
         <Redirect to={authStore.isAuthenticated ? HOME : LOGIN} />
       </Switch>
-    )
+    );
   }
 }
 
-export default observer(App)
+export default observer(App);

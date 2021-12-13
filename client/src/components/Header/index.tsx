@@ -1,76 +1,73 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 import {
-  IHeaderProps,
-  ISubHeaderProps,
-} from '@app/components/Header/IHeaderProps'
-import IconButton from '@app/components/IconButton'
-import { AiFillBell } from 'react-icons/ai'
+  Avatar,
+  Button,
+  Divider,
+  Dropdown,
+  Layout,
+  Menu,
+  Popover,
+  Space,
+} from "antd";
+import { useStore } from "@app/hooks/stores.hooks";
+import { IHeaderProps } from "@app/components/Header/IHeaderProps";
+import { PROFILE, SETTINGS } from "@app/consts/routes";
+import {
+  LogoutOutlined,
+  ProfileOutlined,
+  BellOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
+import "./_header.scss";
 
-import './_header.scss'
-import cn from 'classnames'
+const Header: React.FC<IHeaderProps> = ({ className }) => {
+  const { logout } = useStore("authStore");
+  const profileMenu = (
+    <Menu>
+      <Menu.Item icon={<ProfileOutlined />}>
+        <Link to={PROFILE}>Профиль</Link>
+      </Menu.Item>
+      <Menu.Item icon={<SettingOutlined />}>
+        <Link to={SETTINGS}>Настройки</Link>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item onClick={logout} danger icon={<LogoutOutlined />}>
+        Завершить сеанс
+      </Menu.Item>
+    </Menu>
+  );
 
-export const SubHeader: React.FC<ISubHeaderProps> = ({
-  rightExtras,
-  leftExtras,
-  rightDivider = false,
-  leftDivider = false,
-}) => {
-  return (
-    <div className="header__sub">
-      <div
-        className={cn('header__sub-leftExtras', {
-          'header__sub-leftExtras--divided': leftDivider,
-        })}
-      >
-        {leftExtras &&
-          leftExtras.map((item) => (
-            <div key={item.key} className="header__sub-leftExtras-item">
-              {item}
-            </div>
-          ))}
-      </div>
-      <div
-        className={cn('header__sub-rightExtras', {
-          'header__sub-rightExtras--divided': rightDivider,
-        })}
-      >
-        {rightExtras &&
-          rightExtras.map((item) => (
-            <div key={item.key} className="header__sub-rightExtras-item">
-              {item}
-            </div>
-          ))}
-      </div>
+  const notificationsContent = (
+    <div>
+      <p>Нет новых уведомлений</p>
     </div>
-  )
-}
-
-const Header: React.FC<IHeaderProps> = ({ title, icon: Icon, subHeader }) => {
-  const RenderHeaderMain = (): JSX.Element => {
-    return (
-      <div className="header__main">
-        <div className="header__main-leftItems">
-          {Icon && <Icon className="header__main-leftItems-icon" />}
-          <h3 className="header__main-leftItems-title">{title}</h3>
-        </div>
-        <div className="header__main-rightItems">
-          <IconButton
-            icon={AiFillBell}
-            onClick={(e) => {
-              console.log(e)
-            }}
-          />
-        </div>
-      </div>
-    )
-  }
+  );
 
   return (
-    <div className="header">
-      <RenderHeaderMain />
-      {subHeader && subHeader}
-    </div>
-  )
-}
+    <Layout.Header
+      className={className}
+      style={{ display: "flex", lineHeight: "50px", height: 50 }}
+    >
+      <div style={{ flex: "1 1 0%" }} />
+      <Space size="middle" align="center" split={<Divider type="vertical" />}>
+        <Popover
+          onVisibleChange={(e) => console.log(e)}
+          placement="bottomRight"
+          title="Уведомления"
+          content={notificationsContent}
+          trigger="click"
+        >
+          <Button type="text" icon={<BellOutlined />} />
+        </Popover>
+        <Dropdown overlay={profileMenu} placement="bottomRight">
+          <div>
+            <Avatar>MS</Avatar>
+          </div>
+        </Dropdown>
+      </Space>
+    </Layout.Header>
+  );
+};
 
-export default Header
+export default Header;

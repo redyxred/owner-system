@@ -1,42 +1,34 @@
-import React from 'react'
-import { Row, Col } from 'react-flexbox-grid'
-import { AiFillFileAdd } from 'react-icons/ai'
-import AuthLayout from '@app/layouts/AuthLayout'
-import Card from '@app/components/Card'
-import Button from '@app/components/Button'
-import Select from '@app/components/Select'
-import NotificationsForm from '@app/pages/SettingsPage/notificationsForm'
+import React from "react";
+import { Card, Tabs } from "antd";
+import AuthLayout from "@app/layouts/AuthLayout";
+import NotificationsForm from "@app/pages/SettingsPage/notificationsForm";
+import { TYPE_SETTINGS } from "@app/consts/queryParams";
+import useTabs from "@app/hooks/tabs.hook";
+
+const { TabPane } = Tabs;
 
 const SettingsPage: React.FC = () => {
+  const { activeTabKey, onTabChange } = useTabs(TYPE_SETTINGS, "general");
+
   return (
     <AuthLayout>
-      <Row>
-        <Col xs>
-          <NotificationsForm />
-        </Col>
-        <Col xs>
-          <Card
-            title="Интерфейс"
-            footer={[
-              <Button key="save-btn" icon={AiFillFileAdd} onClick={() => {}}>
-                Сохранить
-              </Button>,
-            ]}
-          >
-            <Select
-              block
-              placeholder="Цвет темы"
-              onChange={(current) => console.log(current)}
-              data={[
-                { name: 'Светлая', value: 'light' },
-                { name: 'Тёмная', value: 'dark' },
-              ]}
-            />
-          </Card>
-        </Col>
-      </Row>
+      <Card bordered={false}>
+        <Tabs
+          tabPosition="left"
+          onChange={onTabChange}
+          activeKey={activeTabKey}
+        >
+          <TabPane tab="Основные" key="general">
+            <h3>Основные</h3>
+            <p>Пусто</p>
+          </TabPane>
+          <TabPane tab="Уведомления" key="notifications">
+            <NotificationsForm />
+          </TabPane>
+        </Tabs>
+      </Card>
     </AuthLayout>
-  )
-}
+  );
+};
 
-export default SettingsPage
+export default SettingsPage;

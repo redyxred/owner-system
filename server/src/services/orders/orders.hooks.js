@@ -1,47 +1,55 @@
-const { authenticate } = require('@feathersjs/authentication').hooks
-const populate = require('feathers-populate-hook')
+const { authenticate } = require("@feathersjs/authentication").hooks;
+const populate = require("feathers-populate-hook");
 
 module.exports = {
   before: {
-    all: [authenticate('jwt')],
+    all: [authenticate("jwt")],
     find: [],
     get: [],
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   after: {
     all: [],
     find: [
       populate({
+        user: {
+          service: "users",
+          f_key: "_id",
+        },
         dishes: {
-          service: 'dishes',
-          f_key: '_id'
+          service: "dishes",
+          f_key: "_id",
         },
         drinks: {
-          service: 'drinks',
-          f_key: '_id'
-        }
-      })
+          service: "drinks",
+          f_key: "_id",
+        },
+      }),
     ],
     get: [
       populate({
+        user: {
+          service: "users",
+          f_key: "_id",
+        },
         dishes: {
-          service: 'dishes',
-          f_key: '_id'
+          service: "dishes",
+          f_key: "_id",
         },
         drinks: {
-          service: 'drinks',
-          f_key: '_id'
-        }
-      })
+          service: "drinks",
+          f_key: "_id",
+        },
+      }),
     ],
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   error: {
@@ -51,6 +59,6 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: []
-  }
-}
+    remove: [],
+  },
+};

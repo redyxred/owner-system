@@ -1,2 +1,2 @@
-export const INFO_STAFF = 'info'
-export const ACTION_STAFF = 'action'
+export const INFO_STAFF = "info";
+export const TYPE_SETTINGS = "type";
