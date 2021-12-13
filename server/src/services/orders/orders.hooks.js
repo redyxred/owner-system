@@ -19,6 +19,10 @@ module.exports = {
         user: {
           service: "users",
           f_key: "_id",
+          one: true,
+          query: {
+            $select: ["firstname", "lastname"],
+          },
         },
         dishes: {
           service: "dishes",
@@ -35,6 +39,10 @@ module.exports = {
         user: {
           service: "users",
           f_key: "_id",
+          one: true,
+          query: {
+            $select: ["firstname", "lastname"],
+          },
         },
         dishes: {
           service: "dishes",
